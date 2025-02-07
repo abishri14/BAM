@@ -1,1 +1,23 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+from flask import Flask
+import json
+
+app = Flask(__name__)
+
+# Read the configuration from the JSON file
+with open('config.json', 'r') as config_file:
+    config_data = json.load(config_file)
+
+# Use the config data to configure the app
+app.config.update(config_data)
+
+@app.route('/')
+def home():
+    return f"App Name: {app.config['APP_NAME']}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+{
+  "APP_NAME": "My Flask App",
+  "DEBUG": true
+}
+
