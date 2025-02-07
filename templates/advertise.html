@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Advertise</title>
+</head>
+<body>
+    <h1>Advertise on Our Platform</h1>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="color: green;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label>Amount to Spend:</label>
+        <input type="number" name="amount" step="0.01" required><br>
+
+        <button type="submit">Pay for Ad</button>
+    </form>
+
+    <p><a href="{{ url_for('profile') }}">Back to Profile</a></p>
+</body>
+</html>
